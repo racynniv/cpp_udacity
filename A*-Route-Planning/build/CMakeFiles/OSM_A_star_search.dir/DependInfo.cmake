@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ros/cpp_udacity/CppND-Route-Planning-Project/src/main.cpp" "/home/ros/cpp_udacity/CppND-Route-Planning-Project/build/CMakeFiles/OSM_A_star_search.dir/src/main.cpp.o"
-  "/home/ros/cpp_udacity/CppND-Route-Planning-Project/src/model.cpp" "/home/ros/cpp_udacity/CppND-Route-Planning-Project/build/CMakeFiles/OSM_A_star_search.dir/src/model.cpp.o"
-  "/home/ros/cpp_udacity/CppND-Route-Planning-Project/src/render.cpp" "/home/ros/cpp_udacity/CppND-Route-Planning-Project/build/CMakeFiles/OSM_A_star_search.dir/src/render.cpp.o"
-  "/home/ros/cpp_udacity/CppND-Route-Planning-Project/src/route_model.cpp" "/home/ros/cpp_udacity/CppND-Route-Planning-Project/build/CMakeFiles/OSM_A_star_search.dir/src/route_model.cpp.o"
-  "/home/ros/cpp_udacity/CppND-Route-Planning-Project/src/route_planner.cpp" "/home/ros/cpp_udacity/CppND-Route-Planning-Project/build/CMakeFiles/OSM_A_star_search.dir/src/route_planner.cpp.o"
+  "/home/ros/cpp_udacity/A*-Route-Planning/src/main.cpp" "/home/ros/cpp_udacity/A*-Route-Planning/build/CMakeFiles/OSM_A_star_search.dir/src/main.cpp.o"
+  "/home/ros/cpp_udacity/A*-Route-Planning/src/model.cpp" "/home/ros/cpp_udacity/A*-Route-Planning/build/CMakeFiles/OSM_A_star_search.dir/src/model.cpp.o"
+  "/home/ros/cpp_udacity/A*-Route-Planning/src/render.cpp" "/home/ros/cpp_udacity/A*-Route-Planning/build/CMakeFiles/OSM_A_star_search.dir/src/render.cpp.o"
+  "/home/ros/cpp_udacity/A*-Route-Planning/src/route_model.cpp" "/home/ros/cpp_udacity/A*-Route-Planning/build/CMakeFiles/OSM_A_star_search.dir/src/route_model.cpp.o"
+  "/home/ros/cpp_udacity/A*-Route-Planning/src/route_planner.cpp" "/home/ros/cpp_udacity/A*-Route-Planning/build/CMakeFiles/OSM_A_star_search.dir/src/route_planner.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -22,7 +22,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/ros/cpp_udacity/CppND-Route-Planning-Project/build/thirdparty/pugixml/CMakeFiles/pugixml.dir/DependInfo.cmake"
+  "/home/ros/cpp_udacity/A*-Route-Planning/build/thirdparty/pugixml/CMakeFiles/pugixml.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
