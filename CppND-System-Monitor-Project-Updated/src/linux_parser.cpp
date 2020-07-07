@@ -150,9 +150,9 @@ long LinuxParser::ActiveJiffies() {
       cpu_states.push_back(state);
     }
   }
-  a_jifs = cpu_state.at(CPUStates::kUser_) + cpu_state.at(CPUStates::kNice_) + 
-           cpu_state.at(CPUStates::kSystem_) + cpu_state.at(CPUStates::kIRQ_) + 
-           cpu_state.at(CPUStates::kSoftIRQ_) + cpu_state.at(CPUStates::kSteal_);
+  a_jifs = cpu_states.at(CPUStates::kUser_) + cpu_states.at(CPUStates::kNice_) + 
+           cpu_states.at(CPUStates::kSystem_) + cpu_states.at(CPUStates::kIRQ_) + 
+           cpu_states.at(CPUStates::kSoftIRQ_) + cpu_states.at(CPUStates::kSteal_);
   return a_jifs;
 }
 
