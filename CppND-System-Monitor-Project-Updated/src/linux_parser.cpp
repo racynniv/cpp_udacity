@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include <iostream>
+
 #include "linux_parser.h"
 
 using std::stof;
@@ -35,13 +37,13 @@ string LinuxParser::OperatingSystem() {
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::Kernel() {
-  string os, kernel;
+  string os, version, kernel;
   string line;
   std::ifstream stream(kProcDirectory + kVersionFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
-    linestream >> os >> kernel;
+    linestream >> os >> version >> kernel;
   }
   return kernel;
 }
@@ -165,7 +167,7 @@ long LinuxParser::IdleJiffies() {
   if (stream.is_open()) {
     std::getline(stream,line);
     std::istringstream linestream(line);
-    linestream >> key;  //pop leading string
+    linestream >> key;  //pop leading
     while (linestream >> value) {
       cpu_values.push_back(value);
     }
@@ -176,16 +178,20 @@ long LinuxParser::IdleJiffies() {
 
 // TODO: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() { 
+  string line, cpu, value;
+  vector<string> jiffies;
   std::ifstream stream(kProcDirectory + kStatFilename);
-  string line;
   if (stream.is_open()) {
-    std::getline(stream,line);
+    std::getline(stream, line);
     std::istringstream linestream(line);
-    std::vector<string> cpu_util{std::istream_iterator<string>{linestream},std::istream_iterator<string>{}};
-    cpu_util.erase(cpu_util.begin());
-    return cpu_util;
+
+    linestream >> cpu;
+
+    while (linestream >> value) {
+      jiffies.push_back(value);
+    }
   }
-  return {};
+  return jiffies;
 }
 
 // TODO: Read and return the total number of processes
@@ -226,7 +232,7 @@ int LinuxParser::RunningProcesses() {
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Command(int pid) { 
   std::ifstream stream(kProcDirectory + to_string(pid) + kCmdlineFilename);
-  string line{};
+  string line{""};
   if (stream.is_open()) {
     std::getline(stream,line);
     return line;
@@ -275,10 +281,10 @@ string LinuxParser::Uid(int pid) {
 string LinuxParser::User(int pid) { 
   string uid = Uid(pid);
   std::ifstream stream(LinuxParser::kPasswordPath);
-  string line, username{}, usr_id;
+  string line, username{""}, usr_id;
   if (stream.is_open()) {
     while(std::getline(stream,line)) {
-      std::replace(line.begin(),line.end(),':',' ');
+      std::replace(line.begin(),line.end(),':', ' ');
       std::replace(line.begin(), line.end(), 'x', ' ');
       std::istringstream linestream(line);
       while (linestream >> username >> usr_id) {

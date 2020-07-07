@@ -23,7 +23,7 @@ vector<Process>& System::Processes() {
   const vector<int> processes_pids = LinuxParser::Pids();
 
   processes_.clear();
-  for (auto& pid : processes_pids) {
+  for (const auto& pid : processes_pids) {
     processes_.emplace_back(pid);
   }
 
@@ -39,12 +39,7 @@ std::string System::Kernel() { return LinuxParser::Kernel(); }
 float System::MemoryUtilization() {return LinuxParser::MemoryUtilization(); }
 
 // TODO: Return the operating system name
-std::string System::OperatingSystem() { 
-  if (os_.length() == 0) {
-    os_ = LinuxParser::OperatingSystem();
-  }
-  return os_;
-}
+std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }
 
 // TODO: Return the number of processes actively running on the system
 int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }

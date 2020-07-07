@@ -2,8 +2,8 @@
 #include "linux_parser.h"
 
 // TODO: Return the aggregate CPU utilization
-Processor::Processor() : old_t_(LinuxParser::Jiffies()), 
-                         old_i_(LinuxParser::IdleJiffies()) {}
+Processor::Processor() : old_i_(LinuxParser::IdleJiffies()),
+                         old_t_(LinuxParser::Jiffies()) {}
 
 // Return the aggregate CPU utilization
 float Processor::Utilization() {
