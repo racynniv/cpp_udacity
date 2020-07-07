@@ -7,9 +7,8 @@ Processor::Processor() : old_t_(LinuxParser::Jiffies()),
 
 // Return the aggregate CPU utilization
 float Processor::Utilization() {
-  long new_t, new_a, new_i;
+  long new_t, new_i;
   new_t = LinuxParser::Jiffies();
-  new_a = LinuxParser::ActiveJiffies();
   new_i = LinuxParser::IdleJiffies();
 
   float delta_t = float(new_t) - float(old_t_);
