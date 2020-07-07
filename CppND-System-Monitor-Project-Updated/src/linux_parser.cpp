@@ -69,21 +69,30 @@ vector<int> LinuxParser::Pids() {
 // TODO: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() { 
   string line, key, unit;
-  float value;
-  vector<float> memory_data{};
+  float value, mem_t, mem_f, cached, buff;
   
   std::ifstream stream(kProcDirectory + kMeminfoFilename);
   if (stream.is_open()) {
-    for (int i=0; i<5; ++i) {
-      std::getline(stream,line);
+    while (std::getline(stream,line)) {
       std::istringstream linestream(line);
-      linestream >> key >> value >> unit;
-      memory_data.push_back(value);
+      while (linestream >> key >> value) {
+        if (key == "MemTotal:") {  //only looking at specific values
+          mem_t = value;
+        }
+        else if (key == "MemFree:") {
+          mem_f = value;
+        }
+        else if (key == "Buffers:") {
+          buff = value;
+        }
+        else if (key == "Cached:") {
+          cached = value;
+          break;
+        }
+      }
     }
   }
-  float utilization = (memory_data.at(0) - memory_data.at(1) - 
-                      memory_data.at(3) - memory_data.at(4)) / 
-                      memory_data.at(0);
+  float utilization = (mem_t - mem_f - buff - cached) / mem_t; 
   return utilization;
 }
 
@@ -103,18 +112,7 @@ long LinuxParser::UpTime() {
 
 // TODO: Read and return the number of jiffies for the system
 long LinuxParser::Jiffies() { 
-  long jiffies{0}, value;
-  string key, line;
-  std::ifstream stream(kProcDirectory + kStatFilename);
-  if (stream.is_open()) {
-    std::getline(stream,line);
-    std::stringstream linestream(line);
-    linestream >> key;
-    while (linestream >> value) {
-      jiffies += value;
-    }
-  }
-  return jiffies;
+  return ActiveJiffies() + IdleJiffies();
 }
 
 // TODO: Read and return the number of active jiffies for a PID
@@ -129,7 +127,7 @@ long LinuxParser::ActiveJiffies(int pid) {
     for (int i=0; i<13; ++i) {
       linestream >> key;
     }
-    for (int i=0; i < 4; ++i) {
+    for (int i=0; i < 4; ++i) { //only interested in 13:16 values
       linestream >> value;
       a_jifs += value;
     }
@@ -147,7 +145,7 @@ long LinuxParser::ActiveJiffies() {
   if (stream.is_open()) {
     std::getline(stream,line);
     std::stringstream linestream(line);
-    linestream >> key;
+    linestream >> key;  //pop leading string
     while (linestream >> value) {
       cpu_values.push_back(value);
     }
@@ -167,7 +165,7 @@ long LinuxParser::IdleJiffies() {
   if (stream.is_open()) {
     std::getline(stream,line);
     std::istringstream linestream(line);
-    linestream >> key;
+    linestream >> key;  //pop leading string
     while (linestream >> value) {
       cpu_values.push_back(value);
     }
@@ -193,7 +191,7 @@ vector<string> LinuxParser::CpuUtilization() {
 // TODO: Read and return the total number of processes
 int LinuxParser::TotalProcesses() { 
   string line, key;
-  float value{0.0};
+  int value{0};
   std::ifstream stream(kProcDirectory + kStatFilename);
   if (stream.is_open()) {
     while (std::getline(stream,line)){
@@ -259,13 +257,13 @@ string LinuxParser::Ram(int pid) {
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Uid(int pid) { 
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatusFilename);
-  string line, key, value{};
+  string line, key, uid;
   if (stream.is_open()) {
     while(std::getline(stream, line)) {
       std::istringstream linestream(line);
-      linestream >> key >> value;
+      linestream >> key >> uid;
       if (key == "Uid:") {
-        return value;
+        return uid;
       }
     }
   }
