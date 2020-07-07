@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-#include <iostream>
-
 #include "linux_parser.h"
 
 using std::stof;
@@ -70,7 +68,7 @@ vector<int> LinuxParser::Pids() {
 
 // TODO: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() { 
-  string line, key, unit;
+  string line, key;
   float value, mem_t, mem_f, cached, buff;
   
   std::ifstream stream(kProcDirectory + kMeminfoFilename);
@@ -129,7 +127,7 @@ long LinuxParser::ActiveJiffies(int pid) {
     for (int i=0; i<13; ++i) {
       linestream >> key;
     }
-    for (int i=0; i < 4; ++i) { //only interested in 13:16 values
+    for (int i=0; i < 4; ++i) { //only interested in 13:17 values
       linestream >> value;
       a_jifs += value;
     }
@@ -141,52 +139,50 @@ long LinuxParser::ActiveJiffies(int pid) {
 // TODO: Read and return the number of active jiffies for the system
 long LinuxParser::ActiveJiffies() { 
   string line, key;
-  long value, a_jifs;
-  vector<int> cpu_values{};
+  long state, a_jifs;
+  vector<int> cpu_states{};
   std::ifstream stream(kProcDirectory + kStatFilename);
   if (stream.is_open()) {
     std::getline(stream,line);
     std::stringstream linestream(line);
     linestream >> key;  //pop leading string
-    while (linestream >> value) {
-      cpu_values.push_back(value);
+    while (linestream >> state) {
+      cpu_states.push_back(state);
     }
   }
-  a_jifs = cpu_values.at(CPUStates::kUser_) + cpu_values.at(CPUStates::kNice_) + 
-           cpu_values.at(CPUStates::kSystem_) + cpu_values.at(CPUStates::kIRQ_) + 
-           cpu_values.at(CPUStates::kSoftIRQ_) + cpu_values.at(CPUStates::kSteal_);
+  a_jifs = cpu_state.at(CPUStates::kUser_) + cpu_state.at(CPUStates::kNice_) + 
+           cpu_state.at(CPUStates::kSystem_) + cpu_state.at(CPUStates::kIRQ_) + 
+           cpu_state.at(CPUStates::kSoftIRQ_) + cpu_state.at(CPUStates::kSteal_);
   return a_jifs;
 }
 
 // TODO: Read and return the number of idle jiffies for the system
 long LinuxParser::IdleJiffies() { 
   string line, key;
-  long value, i_jifs{0};
-  vector<int> cpu_values{};
+  long state, i_jifs{0};
+  vector<int> cpu_states{};
   std::ifstream stream(kProcDirectory + kStatFilename);
   if (stream.is_open()) {
     std::getline(stream,line);
     std::istringstream linestream(line);
     linestream >> key;  //pop leading
-    while (linestream >> value) {
-      cpu_values.push_back(value);
+    while (linestream >> state) {
+      cpu_states.push_back(state);
     }
   }
-  i_jifs = cpu_values.at(CPUStates::kIdle_) + cpu_values.at(CPUStates::kIOwait_);
+  i_jifs = cpu_states.at(CPUStates::kIdle_) + cpu_states.at(CPUStates::kIOwait_);
   return i_jifs;
 }
 
 // TODO: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() { 
-  string line, cpu, value;
+  string line, key, value;
   vector<string> jiffies;
   std::ifstream stream(kProcDirectory + kStatFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
-
-    linestream >> cpu;
-
+    linestream >> key;
     while (linestream >> value) {
       jiffies.push_back(value);
     }
@@ -256,14 +252,14 @@ string LinuxParser::Ram(int pid) {
       }
     }
   }
-  return string("");
+  return string("0");
 }
 
 // TODO: Read and return the user ID associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Uid(int pid) { 
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatusFilename);
-  string line, key, uid;
+  string line, key, uid{""};
   if (stream.is_open()) {
     while(std::getline(stream, line)) {
       std::istringstream linestream(line);
@@ -273,7 +269,7 @@ string LinuxParser::Uid(int pid) {
       }
     }
   }
-  return string("");
+  return uid;
 }
 
 // TODO: Read and return the user associated with a process
