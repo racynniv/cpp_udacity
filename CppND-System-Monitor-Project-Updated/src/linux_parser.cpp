@@ -10,6 +10,13 @@ using std::string;
 using std::to_string;
 using std::vector;
 
+/*
+
+Looked at code from https://github.com/kangkelvin/CppND-System-Monitor
+for places that threw errors from original code to see what might be wrong
+
+*/
+
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::OperatingSystem() {
   string line;
