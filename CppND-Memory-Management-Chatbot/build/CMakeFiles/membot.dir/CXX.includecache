@@ -49,6 +49,8 @@ chatgui.h
 /home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatgui.h
 wx/wx.h
 -
+memory
+-
 
 /home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatlogic.cpp
 fstream
@@ -81,12 +83,6 @@ string
 -
 chatgui.h
 /home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatgui.h
-
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphedge.cpp
-graphnode.h
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphnode.h
-graphedge.h
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphedge.h
 
 /home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphedge.h
 vector
