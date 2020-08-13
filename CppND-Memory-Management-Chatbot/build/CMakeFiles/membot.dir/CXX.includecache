@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatbot.cpp
-iostream
--
-random
--
-algorithm
--
-ctime
--
-chatlogic.h
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatlogic.h
-graphnode.h
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphnode.h
-graphedge.h
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphedge.h
-chatbot.h
-/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatbot.h
-
 /home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatbot.h
 wx/bitmap.h
 -
@@ -35,6 +17,30 @@ wx/wx.h
 -
 memory
 -
+
+/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatlogic.cpp
+fstream
+-
+sstream
+-
+iostream
+-
+vector
+-
+iterator
+-
+tuple
+-
+algorithm
+-
+graphedge.h
+/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphedge.h
+graphnode.h
+/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/graphnode.h
+chatbot.h
+/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatbot.h
+chatlogic.h
+/home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatlogic.h
 
 /home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatlogic.h
 vector
@@ -57,6 +63,8 @@ string
 -
 chatbot.h
 /home/ros/cpp_udacity/CppND-Memory-Management-Chatbot/src/chatbot.h
+memory
+-
 
 /usr/local/include/wx-3.1/wx/accel.h
 wx/defs.h
