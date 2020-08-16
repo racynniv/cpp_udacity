@@ -8,6 +8,8 @@
 #include "graphedge.h"
 #include "chatbot.h"
 
+// looked at https://github.com/Junzhuodu/CppND-Memory-Management-Chatbot to find an error I couldnt locate
+
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
