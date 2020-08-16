@@ -16,7 +16,7 @@ private:
     //// STUDENT CODE
     ////
 
-    // data handles (owned)
+    // data handles (owned unique pointer)
     std::vector<std::unique_ptr<GraphNode>> _nodes;
     //std::vector<GraphEdge *> _edges;
 

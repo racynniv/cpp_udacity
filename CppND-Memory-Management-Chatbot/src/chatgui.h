@@ -17,7 +17,7 @@ private:
     //// STUDENT CODE
     ////
 
-    std::unique_ptr<ChatLogic> _chatLogic;
+    std::unique_ptr<ChatLogic> _chatLogic; //unique pointer
 
     ////
     //// EOF STUDENT CODE
@@ -28,7 +28,7 @@ public:
     ~ChatBotPanelDialog();
 
     // getter / setter
-    ChatLogic *GetChatLogicHandle() { return _chatLogic.get(); }
+    ChatLogic *GetChatLogicHandle() { return _chatLogic.get(); } //changed to get
 
     // events
     void paintEvent(wxPaintEvent &evt);

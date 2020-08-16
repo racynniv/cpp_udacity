@@ -45,25 +45,28 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
-//Copy
+//Copy Constructor
 ChatBot::ChatBot(const ChatBot &source)
 {
     std::cout << "Copy Constructor" << std::endl;
     
+    //Set image, logic, and root to source values
     _image = new wxBitmap(*source._image);
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
 }
 
-//Copy assignment
+//Copy equals assignment
 ChatBot &ChatBot::operator=(const ChatBot &source)
 {
     std::cout << "Copy Assignment Constructor" << std::endl;
     
+    //Check that the LHS and RHS are not the same already
     if (this == &source) {  return *this; }
+    
+    //Delete and set new values
     delete _image;
     _image = new wxBitmap(*source._image);
-    
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
     
@@ -76,13 +79,13 @@ ChatBot::ChatBot(ChatBot &&source) noexcept
 
     std::cout << "Move Constructor" << std::endl;    
     
+    //set current data to source data
     _image = source._image;
-    
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
     
+    //delete source data
     source._image = nullptr;
-    
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
 }
@@ -92,12 +95,16 @@ ChatBot &ChatBot::operator=(ChatBot &&source) noexcept
 {
     std::cout << "Move Assignment Constructor" << std::endl;
     
+    //check that LHS and RHS are not the same
     if (this == &source) { return *this; }
     
+    //save source data to current instance
     delete _image;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     _image = source._image;
+    
+    //delete source data
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
     source._image = nullptr;
