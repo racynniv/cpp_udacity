@@ -1,3 +1,6 @@
 [submodule "CppND-Memory-Management-Chatbot"]
 	path = CppND-Memory-Management-Chatbot
 	url = https://github.com/udacity/CppND-Memory-Management-Chatbot.git
+[submodule "CppND-Program-a-Concurrent-Traffic-Simulation"]
+	path = CppND-Program-a-Concurrent-Traffic-Simulation
+	url = https://github.com/udacity/CppND-Program-a-Concurrent-Traffic-Simulation.git
