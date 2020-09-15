@@ -5,6 +5,9 @@
 
 /* Implementation of class "MessageQueue" */
 
+/* Cite: https://github.com/maxritter/CppND-Traffic-Simulation to check
+against */
+
 
 template <typename T>
 T MessageQueue<T>::receive()
